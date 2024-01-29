@@ -10,3 +10,6 @@ SELECT title, price FROM titles WHERE (title LIKE 'SU%' OR title LIKE 'BU%') GRO
 
 -- Exercice 4: À partir de la table « titles », obtenir la liste des titres dont l’identifiant ne débute pas par SU ou BU. Afficher le titre et le prix de chaque livre. (15 pts)
 SELECT title, price FROM titles WHERE NOT (title LIKE 'SU%' OR title LIKE 'BU%') GROUP BY title_id;
+
+-- Exercice 5: À partir de la table « titles », obtenir la liste des titres ne débutant ni par S, ni par B, mais dont la seconde lettre est « o ». Afficher le titre et le prix. (15 pts)
+SELECT title, price FROM titles WHERE (title LIKE '_o%') AND (title NOT LIKE 'S%' OR title NOT LIKE 'B%')  GROUP BY title_id;
