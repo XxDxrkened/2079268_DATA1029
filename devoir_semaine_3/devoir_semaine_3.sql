@@ -30,4 +30,10 @@ GROUP BY job_lvl;
 -- Question 6 : Liste des employés par maison d'édition (15 pts)
 SELECT employees.*, publishers.pub_name AS Maison_Edition
 FROM employees
-JOIN publishers on employees.pub_id = publishers.pub_id
+JOIN publishers on employees.pub_id = publishers.pub_id;
+
+-- Question 7 : Salaires horraires moyens des employés par maison d'édition (15pts)
+SELECT AVG(employees.salary) AS Salaire_Moyen, publishers.pub_name AS Maison_Edition
+FROM employees
+JOIN publishers ON employees.pub_id = publishers.pub_id
+GROUP BY pub_name;
