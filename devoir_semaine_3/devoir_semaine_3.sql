@@ -37,3 +37,11 @@ SELECT AVG(employees.salary) AS Salaire_Moyen, publishers.pub_name AS Maison_Edi
 FROM employees
 JOIN publishers ON employees.pub_id = publishers.pub_id
 GROUP BY pub_name;
+
+-- Question 8 : Effectif(nombre) d'employées de niveau SEINIOR par maison d'édition (15pts)
+SELECT COUNT(job_lvl) AS Employes_Seinior , publishers.pub_name AS Maison_Edition
+FROM employees
+JOIN publishers ON employees.pub_id = publishers.pub_id
+WHERE employees.job_lvl = 'SEINIOR'
+GROUP BY publishers.pub_name;
+
