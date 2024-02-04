@@ -9,7 +9,14 @@ SELECT authors.au_fname AS prenom, authors.au_lname AS nom, publishers.pub_name 
 FROM authors
 LEFT JOIN publishers ON authors.city = publishers.city;
 
--- Question 3 : La liste des paires (auteur, éditeur) demeurant dans la même ville, incluant aussi les éditeurs qui ne répondent pas à ce critère. (10 pts)
+-- Question 3 : La liste des paires (auteur, éditeur) demeurant dans la même ville, incluant aussi les éditeurs qui ne répondent pas à ce critère. (10pts)
 SELECT authors.au_fname AS prenom, authors.au_lname AS nom, publishers.pub_name AS publisher, authors.city
 FROM authors
 RIGHT JOIN publishers ON authors.city = publishers.city;
+
+-- Question 4 : La liste des paires (auteur, éditeur) demeurant dans la même ville, incluant les auteurs et éditeurs qui ne répondent pas à ce critère. (10pts)
+SELECT authors.au_fname AS prenom, authors.au_lname AS nom, publishers.pub_name AS publisher, authors.city
+FROM authors
+CROSS JOIN publishers
+ON authors.city = publishers.city OR authors.city IS NULL OR publishers.city IS NULL;
+
