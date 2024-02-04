@@ -1,3 +1,5 @@
+USE library;
+
 -- Question 1 : La liste des paires (auteur, éditeur) demeurant dans la même ville. (10pts)
 SELECT authors.au_fname AS prenom, authors.au_lname AS nom, publishers.pub_name AS publisher, authors.city
 FROM authors
@@ -20,3 +22,7 @@ FROM authors
 CROSS JOIN publishers
 ON authors.city = publishers.city OR authors.city IS NULL OR publishers.city IS NULL;
 
+-- Question 5 : Effectif(nombre) d'employes par niveau d'experience (15pts)
+SELECT job_lvl AS niveau_experience, COUNT(job_lvl) AS nombre_par_niveau
+FROM employees
+GROUP BY job_lvl;
