@@ -26,3 +26,8 @@ ON authors.city = publishers.city OR authors.city IS NULL OR publishers.city IS 
 SELECT job_lvl AS niveau_experience, COUNT(job_lvl) AS nombre_par_niveau
 FROM employees
 GROUP BY job_lvl;
+
+-- Question 6 : Liste des employés par maison d'édition (15 pts)
+SELECT employees.*, publishers.pub_name AS Maison_Edition
+FROM employees
+JOIN publishers on employees.pub_id = publishers.pub_id
