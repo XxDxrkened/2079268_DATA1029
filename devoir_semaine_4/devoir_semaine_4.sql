@@ -1,11 +1,23 @@
 USE library;
 
 -- Question 1: Obtenir la liste des auteurs dont l’éditeur « Harmattan » n’a publié aucun livre
-SELECT a.au_id, a.au_fname, a.au_lname
+SELECT DISTINCT a.au_id, a.au_fname, a.au_lname
 FROM authors AS a
 WHERE a.au_id NOT IN (
-SELECT DISTINCT tauth.au_id
-FROM titleauthor AS tauth
-INNER JOIN titles t ON tauth.title_id = t.title_id
+SELECT DISTINCT title_au.au_id
+FROM titleauthor AS title_au
+INNER JOIN titles t ON title_au.title_id = t.title_id
 INNER JOIN publishers p ON t.pub_id = p.pub_id
 WHERE p.pub_name = 'Harmattan');
+
+-- Question 2: Obtenir la liste des auteurs dont l’éditeur «Eyrolles » a publié tous les livres
+SELECT DISTINCT a.au_id, a.au_fname, a.au_lname
+FROM authors AS a
+WHERE NOT EXISTS (
+SELECT t.title_id
+FROM titles AS t
+INNER JOIN publishers AS p ON t.pub_id = p.pub_id
+LEFT JOIN titleauthor AS title_au ON t.title_id = title_au.title_id AND title_au.au_id = a.au_id
+WHERE p.pub_name = 'Eyrolles'
+AND title_au.title_id IS NULL
+);
