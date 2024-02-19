@@ -28,3 +28,14 @@ state varchar(50) NULL,
 country varchar(50) NOT NULL,
 email varchar(50) NOT NULL CHECK (email RLIKE '%@%')
 );
+
+DROP TABLE IF EXISTS titles;
+CREATE TABLE titles (
+title_id tinyint NOT NULL PRIMARY KEY,
+type ENUM("Roman", "Politique", "Science", "Histoire") NOT NULL,
+pub_id smallint NOT NULL REFERENCES publishers(pub_id),
+price float NOT NULL,
+advance float NOT NULL,
+notes varchar(255) NULL,
+pub_date date NOT NULL
+);
