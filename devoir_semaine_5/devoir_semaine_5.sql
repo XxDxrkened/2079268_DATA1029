@@ -21,7 +21,7 @@ email varchar(50) NOT NULL CHECK (email RLIKE '%@%')
 
 DROP TABLE IF EXISTS publishers;
 CREATE TABLE publishers (
-pub_id tinyint NOT NULL PRIMARY KEY,
+pub_id tinyint NOT NULL AUTO_INCREMENT PRIMARY KEY,
 pub_name varchar(50) NOT NULL,
 city varchar(50) NOT NULL,
 state varchar(50) NULL,
@@ -31,7 +31,7 @@ email varchar(50) NOT NULL CHECK (email RLIKE '%@%')
 
 DROP TABLE IF EXISTS titles;
 CREATE TABLE titles (
-title_id tinyint NOT NULL PRIMARY KEY,
+title_id tinyint NOT NULL AUTO_INCREMENT PRIMARY KEY,
 type ENUM("Roman", "Politique", "Science", "Histoire") NOT NULL,
 pub_id smallint NOT NULL REFERENCES publishers(pub_id),
 price float NOT NULL,
@@ -46,4 +46,12 @@ au_id tinyint NOT NULL REFERENCES authors(au_id),
 title_id tinyint NOT NULL REFERENCES titles(title_id),
 au_ord tinyint NOT NULL,
 royalty float NOT NULL
+);
+
+DROP TABLE IF EXISTS jobs;
+CREATE TABLE jobs (
+job_id tinyint NOT NULL AUTO_INCREMENT PRIMARY KEY,
+job_desc varchar(50) NOT NULL,
+min_lvl ENUM("Stagiaire", "Junior", "Intermediaire", "Seinior") NOT NULL,
+max_lvl ENUM("Stagiaire", "Junior", "Intermediaire", "Seinior") NOT NULL
 );
