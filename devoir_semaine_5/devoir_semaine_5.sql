@@ -16,7 +16,7 @@ state varchar(50) NULL,
 country varchar(50) NOT NULL,
 zip char(6) NOT NULL CHECK (zip RLIKE '^[A-Z][0-9][A-Z][0-9][A-Z][0-9]$'),
 contract text NOT NULL,
-email varchar(50) NOT NULL CHECK (email RLIKE '%@%') 
+email varchar(50) NOT NULL CHECK (email LIKE '%@%') 
 );
 
 DROP TABLE IF EXISTS publishers;
@@ -26,7 +26,7 @@ pub_name varchar(50) NOT NULL,
 city varchar(50) NOT NULL,
 state varchar(50) NULL,
 country varchar(50) NOT NULL,
-email varchar(50) NOT NULL CHECK (email RLIKE '%@%')
+email varchar(50) NOT NULL CHECK (email LIKE '%@%')
 );
 
 DROP TABLE IF EXISTS titles;
@@ -66,7 +66,7 @@ lname varchar(50) NOT NULL,
 job_id smallint NOT NULL REFERENCES jobs(job_id),
 pub_id smallint NOT NULL REFERENCES publishers(pub_id),
 pub_date date NOT NULL,
-email varchar(50) NOT NULL CHECK (email RLIKE '%@%')
+email varchar(50) NOT NULL CHECK (email LIKE '%@%')
 );
 
 DROP TABLE IF EXISTS stores;
