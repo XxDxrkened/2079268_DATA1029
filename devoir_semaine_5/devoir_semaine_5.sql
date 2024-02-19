@@ -55,3 +55,16 @@ job_desc varchar(50) NOT NULL,
 min_lvl ENUM("Stagiaire", "Junior", "Intermediaire", "Seinior") NOT NULL,
 max_lvl ENUM("Stagiaire", "Junior", "Intermediaire", "Seinior") NOT NULL
 );
+
+DROP TABLE IF EXISTS employees;
+CREATE TABLE employees (
+emp_id tinyint NOT NULL AUTO_INCREMENT PRIMARY KEY,
+emp_name varchar(50) NOT NULL,
+salary smallint NOT NULL,
+fname varchar(50) NOT NULL,
+lname varchar(50) NOT NULL,
+job_id smallint NOT NULL REFERENCES jobs(job_id),
+pub_id smallint NOT NULL REFERENCES publishers(pub_id),
+pub_date date NOT NULL,
+email varchar(50) NOT NULL CHECK (email RLIKE '%@%')
+);
