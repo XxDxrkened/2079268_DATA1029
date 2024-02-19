@@ -68,3 +68,13 @@ pub_id smallint NOT NULL REFERENCES publishers(pub_id),
 pub_date date NOT NULL,
 email varchar(50) NOT NULL CHECK (email RLIKE '%@%')
 );
+
+DROP TABLE IF EXISTS stores;
+CREATE TABLE stores (
+stor_id tinyint NOT NULL AUTO_INCREMENT PRIMARY KEY,
+stor_name varchar(50) NOT NULL,
+stor_address varchar(50) NOT NULL,
+city varchar(50) NOT NULL,
+state varchar(50) NULL,
+country varchar(50) NOT NULL
+);
