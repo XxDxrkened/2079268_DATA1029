@@ -78,3 +78,12 @@ city varchar(50) NOT NULL,
 state varchar(50) NULL,
 country varchar(50) NOT NULL
 );
+
+DROP TABLES IF EXISTS sales;
+CREATE TABLE sales (
+stor_id tinyint NOT NULL REFERENCES stores(stor_id),
+ord_num tinyint NOT NULL AUTO_INCREMENT PRIMARY KEY,
+title_id smallint NOT NULL REFERENCES titles(title_id),
+ord_date datetime NOT NULL,
+qty int NOT NULL
+);
