@@ -39,3 +39,11 @@ advance float NOT NULL,
 notes varchar(255) NULL,
 pub_date date NOT NULL
 );
+
+DROP TABLE IF EXISTS redactions;
+CREATE TABLE redactions (
+au_id tinyint NOT NULL REFERENCES authors(au_id),
+title_id tinyint NOT NULL REFERENCES titles(title_id),
+au_ord tinyint NOT NULL,
+royalty float NOT NULL
+);
