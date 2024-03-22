@@ -64,18 +64,20 @@ LIMIT 1;
 -- pas pus la resoudre
 
 -- Question 9 - Les auteurs des 5 livres les plus vendus. (10 pts)
-SELECT a.au_fname AS first_name, a.au_lname AS last_name, t.title
+SELECT a.au_fname AS au_first_name, a.au_lname AS au_last_name
 FROM authors a
 JOIN titleauthor ta ON a.au_id = ta.au_id
 JOIN titles t ON ta.title_id = t.title_id
-JOIN (
-    SELECT title_id, SUM(qty) AS total_qty
-    FROM sales
-    GROUP BY title_id
-    ORDER BY total_qty DESC
-    LIMIT 5
-) AS top_books ON t.title_id = top_books.title_id
-ORDER BY top_books.total_qty DESC;
+JOIN sales s ON t.title_id = s.title_id
+GROUP BY a.au_id
+ORDER BY SUM(s.qty) DESC
+LIMIT 5;
+
+-- Question 10 - Prix moyens des livres par maisons d’édition. (10 pts) 
+SELECT p.pub_name AS publisher_name, AVG(t.price) AS average_price
+FROM publishers p
+LEFT JOIN titles t ON p.pub_id = t.pub_id
+GROUP BY p.pub_name;
 
 
 
