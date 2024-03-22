@@ -51,6 +51,14 @@ WHERE (e.job_id, e.salary) IN (
     GROUP BY job_id
 );
 
+-- Question 7 - De quels types sont les livres les plus vendus? (10 pts)
+SELECT t.type, COUNT(s.title_id) AS total_sales
+FROM sales s
+JOIN titles t ON s.title_id = t.title_id
+GROUP BY t.type
+ORDER BY total_sales DESC
+-- Si vous voulez seulement le résulat finale et non la pleine liste
+LIMIT 1;
 
 
 
