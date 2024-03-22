@@ -60,5 +60,42 @@ ORDER BY total_sales DESC
 -- Si vous voulez seulement le résulat finale et non la pleine liste
 LIMIT 1;
 
+-- Question 8 - Pour chaque boutique, les 2 livres les plus vendus et leurs prix. (10 pts)
+-- pas pus la resoudre
+
+-- Question 9 - Les auteurs des 5 livres les plus vendus. (10 pts)
+SELECT a.au_fname AS first_name, a.au_lname AS last_name, t.title
+FROM authors a
+JOIN titleauthor ta ON a.au_id = ta.au_id
+JOIN titles t ON ta.title_id = t.title_id
+JOIN (
+    SELECT title_id, SUM(qty) AS total_qty
+    FROM sales
+    GROUP BY title_id
+    ORDER BY total_qty DESC
+    LIMIT 5
+) AS top_books ON t.title_id = top_books.title_id
+ORDER BY top_books.total_qty DESC;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
