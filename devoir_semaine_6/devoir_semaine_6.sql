@@ -41,3 +41,16 @@ JOIN publishers p ON e.pub_id = p.pub_id
 WHERE e.salary > (
 	SELECT AVG(salary) FROM employees WHERE pub_id = e.pub_id
 );
+
+-- Question 6 - Noms complets des employés qui ont le salaire minimum de leur grade (10 pts)
+SELECT e.fname AS first_name, e.lname AS last_name, e.salary
+FROM employees e
+WHERE (e.job_id, e.salary) IN (
+    SELECT job_id, MIN(salary)
+    FROM employees
+    GROUP BY job_id
+);
+
+
+
+
