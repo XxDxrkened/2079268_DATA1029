@@ -79,25 +79,10 @@ FROM publishers p
 LEFT JOIN titles t ON p.pub_id = t.pub_id
 GROUP BY p.pub_name;
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+-- Question 11 - Les 3 auteurs ayant les plus de livres
+SELECT au_fname, au_lname, COUNT(*) AS book_count
+FROM authors
+JOIN titleauthor ON authors.au_id = titleauthor.au_id
+GROUP BY authors.au_id
+ORDER BY book_count DESC
+LIMIT 3;
