@@ -27,3 +27,11 @@ SELECT e.fname AS first_name, e.lname AS last_name, p.pub_name
 FROM employees e
 JOIN publishers p ON e.pub_id = p.pub_id
 WHERE p.country = 'Canada';
+
+-- Question 4 - Noms complets des employés qui ont un manager. (10pts)
+SELECT e.fname AS first_name, e.lname AS last_name
+FROM employees e
+JOIN jobs j ON e.job_id = j.job_id
+WHERE j.max_lvl = 'MANAGER';
+
+
