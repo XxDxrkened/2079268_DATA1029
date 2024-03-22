@@ -12,3 +12,12 @@ WHERE (e.pub_id, e.job_lvl) IN (
     WHERE e2.pub_id = e.pub_id
     GROUP BY e2.pub_id
 );
+
+-- Question 2 - Noms complets des employés ayant un salaire supérieur à celui de Norbert Zongo (10 pts)
+SELECT e.fname AS first_name, e.lname AS last_name, e.salary
+FROM employees e
+WHERE e.salary > (
+	SELECT e.salary
+    FROM employees e
+    WHERE e.fname = 'Norbert' AND e.lname = 'Zongo'
+);
