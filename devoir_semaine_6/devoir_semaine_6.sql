@@ -34,4 +34,10 @@ FROM employees e
 JOIN jobs j ON e.job_id = j.job_id
 WHERE j.max_lvl = 'MANAGER';
 
-
+-- Question 5 - Noms complets des employés qui ont un salaire au-dessus de la moyenne de salaire chez leur employeur. (10 pts)
+SELECT e.fname AS first_name, e.lname AS last_name, e.salary, p.pub_name
+FROM employees e
+JOIN publishers p ON e.pub_id = p.pub_id
+WHERE e.salary > (
+	SELECT AVG(salary) FROM employees WHERE pub_id = e.pub_id
+);
